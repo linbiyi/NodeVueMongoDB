@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="node_modules/vue/dist/vue.js"></script>
+	<script src="node_modules/axios/dist/axios.js"></script>
+</head>
+<body>
+	<div id="app" class="container">
+		<h1>axios插件讲解</h1>
+		<!-- <a href="javascript:;"></a>防止a链接的跳转和页面的刷新 -->
+		<a href="javascript:;" class="btn btn-primary" @click="get">Get请求</a>
+		<a href="javascript:;" class="btn btn-primary" @click="post">Post请求</a>
+		<a href="javascript:;" class="btn btn-primary" @click="http">http请求</a>
+		<div>
+			<span>{{msg}}</span>
+		</div>
+	</div>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				msg: ''
+			},
+			mounted: function () {
+				//拦截发送的请求
+				axios.interceptors.request.use(function (config) {
+					//配置前拦截到用户所有的请求
+					console.log('request init');
+					return config;
+				}),
+				//拦截响应的请求
+				axios.interceptors.response.use(function (response) {
+					console.log('response init');
+					return response;
+				})
+			},
+			methods: {
+				get() {
+					axios.get('package.json', {
+						params: {
+							useId: '999'
+						},
+						headers: {
+							token: 'jack'
+						},
+						before() {
+							console.log('before init')
+						}
+					}).then(res => {
+						this.msg = res.data;
+					}).catch(error => {
+						this.msg = error;
+					})
+				},
+				post() {
+					axios.post('package.json', {
+						useId: '888'
+					}, {
+						headers: {
+							token: 'tom'
+						}
+					}).then(res => {
+						this.msg = res.data;
+					}).catch(error => {
+						this.msg = error;
+					})
+				},
+				http() {
+					axios({
+						url: 'package.json',
+						methods: 'get',
+						data: {				//post方法传输数据
+							userId: '101'
+						},
+						params: {			//get方法传输数据
+							userId: '102'
+						},
+						headers: {
+							token: 'http-test'
+						}
+					}).then(res => {
+						this.msg = res.data;
+					}).catch(error => {
+						this.msg = error;
+					})
+				}
+			}
+
+		});
+
+
+	</script>
+</body>
+</html>

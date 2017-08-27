@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="node_modules/vue/dist/vue.js"></script>
+	<script src="node_modules/vue-resource/dist/vue-resource.js"></script>
+</head>
+<body>
+	<div id="app" class="container">
+		<h1>vue-resource插件讲解</h1>
+		<!-- <a href="javascript:;"></a>防止a链接的跳转和页面的刷新 -->
+		<a href="javascript:;" class="btn btn-primary" @click="get">Get请求</a>
+		<a href="javascript:;" class="btn btn-primary" @click="post">Post请求</a>
+		<a href="javascript:;" class="btn btn-primary" @click="jsonp">JSONP请求</a>
+		<a href="javascript:;" class="btn btn-primary" @click="http">http请求</a>
+		<div>
+			<span>{{msg}}</span>
+		</div>
+	</div>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				msg: ''
+			},
+			mounted: function () {
+				Vue.http.interceptors.push((request, next) => {
+					//请求发送前的处理逻辑
+					console.log('request init' )
+					next((response) => {	
+						//请求发送后的处理逻辑
+						//根据请求的状态, response参数会返回给successCallback或errorCallback
+						console.log('response init' )
+						return reponse;
+					})
+				});
+			},
+			http: {
+				root: "http://localhost:8080/demo3/demo3"
+			},
+			methods: {
+				get() {
+					this.$http.get('package.json', {
+						params: {			//请求的数据
+							userId: '101',
+						},
+						headers: {			//请求头添加第三方需要的token
+							token: 'abcd'
+						}
+					}).then(res => {			//then(捕获发送成功的数据)
+						this.msg = res.data;	//res.data获取的最终数据
+					}, error => {
+						this.msg = error;			
+					});
+				},
+				post() {
+					this.$http.post('package.json', {
+						userId: '102',
+					}, {
+						headers: {
+							access_token: 'abc'
+						}
+					}).then(res => {
+						this.msg = res.data;
+					}, error =>{
+						this.msg = error;
+					})
+				},
+				jsonp() {
+					this.$http.jsonp('http://www.imooc.com/course/AjaxCourseMember?ids=796').then(res => {
+						this.msg = res.data;
+					})
+				},
+				http() {
+					this.$http({
+						url: "package.json",
+						params: {
+							userId: '103'
+						},
+						headers: {
+							token: '123'
+						},
+						timeout: 5,
+						before() {
+							console.log('before init')
+						}
+					}).then(res => {
+						this.msg = res.data;
+					});
+				}
+			}
+
+		});
+
+
+	</script>
+</body>
+</html>

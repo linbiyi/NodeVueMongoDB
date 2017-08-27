@@ -1,0 +1,18 @@
+1.Nodejs在Linux下安装和环境搭建(6.10.3为当前最稳定的版本)
+	0)	cd /																			(进入根目录)
+	1)	wget https://npm.taobao.org/mirrors/node/v6.10.3/node-v6.10.3-linux-x64.tar.xz	(下载nodejs: 下载node-v6.10.3-linux-x64.tar.xz压缩包到根目录下)
+	2)	xz -d node-v6.10.3-linux-x64.tar.xz (tar -xzvf node-v6.10.3-linux-x64.tar.gz)	(解压nodejs：前者解压xz格式 / 后者解压gz格式	xz -d:解压xz文件 输出到tar文件中)
+	3)	tar -xvf node-v6.10.3-linux-x64.tar												(再次解压tar文件为目录)
+	4)	ln -s /node-v6.10.3-linux-x64/bin/node /usr/local/bin/node						(生成node软链接)
+	5)	ln -s /node-v6.10.3-linux-x64/bin/npm  /usr/local/bin/npm						(生成npm软连接)
+	6)	生成软链接之后可以查看node和npm的版本
+	
+2.Node基础编程
+	1)	基于Chrome V8引擎
+	2)	单线程(同一时间只能做一件事)
+	3)	使用JavaScript开发后端代码
+	4)	非阻塞的io
+	
+	5)	Common规范
+	
+	

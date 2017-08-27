@@ -1,0 +1,142 @@
+npm i -g cnpm --registry	安装npm的淘宝镜像cnpm
+npm -v 查看版本号
+npm list 查看当前目录安装的模块
+npm i vue --save 安装vue模块到依赖中(--save是将插件安装到package.json中的dependencies项目依赖中,在项目的主目录下, 也就是package.json配置文件所在的目录下安装才能成功)
+npm i vue --save-dev
+node 进入node的shell操作模式
+node xxx.js  用node运行xxx.js文件
+
+2.vue-cli构建SPA应用
+npm i -g vue-cli
+vue init webpack-simple demo  (vue 是shell命令)初始化webpack简单模式下的项目(demo 是项目名）
+vue init webpack demo2 初始化一个webpack完整的项目
+
+2-1.vue多页面构建项目(vue)
+	1) 字符界面进入项目目录下
+	2) npm i vue --save    安装vue(生成node_modules目录和package-lock.json文件)
+	3) 本地引用vue文件 src = "node_modules/vue/dist/vue.min.js"
+	
+2-2.vue-cli构建项目(webpack-simple)
+	1) 字符界面进入项目目录下
+	2) npm i -g vue-cli    全局安装脚手架vue-cli
+		遇到问题: 用win10安装的vue-cli时报错：Error: EPERM: operation not permitted (不允许操作)
+		原因: c盘写入权限不足
+		解决办法：通过目录找到‪C:\Windows\System32\cmd.exe，然后右键单击，出现选项，选择以管理员身份运行
+		
+	3) vue init webpack-simple demo    初始化一个简单的webpakc项目
+	4) 填写package.json基础配置项
+		Project name demo  项目名(注意项目名不能是大写，必须是小写)
+		Project description A Vue.js project    项目描述
+		Author  lanyu    作者
+		Use sass (y/n)	 是否使用sass
+		(项目生成完毕)
+	5) 生成的项目文件：
+		src目录：项目源码
+		.babelrc文件：ES6编译插件的配置文件
+		.gitignore: git的忽略文件
+		index.html: 单页面的入口
+		package.json: 配置文件
+			dev和build为项目的shell脚本，可以通过 npm run dev 来运行
+			如果没有 npm i 的话会报错：This is related to npm not being able to find a file.(没有找到相关的依赖文件)
+			解决办法：npm i
+		README.md:	项目描述文件(可以写一些项目的使用方法)
+		webpack.config.js： webpack的配置
+	6) 运行项目
+		cd demo      进入项目目录
+		npm i 	     下载项目依赖的插件项
+		npm run dev	 运行项目开发模式
+		
+2-3.vue-cli构建项目(webpack)	
+	1) 字符界面进入项目目录下
+	2) 如果之前安装过 vue-cli 现在就可以不用安装了
+	3) vue init webpack demo 	初始化一个完整的webpakc项目
+	4) 填写package.json基础配置项
+		Project name demo  项目名(注意项目名不能是大写，必须是小写)
+		Project description A Vue.js project    项目描述
+		Author  lanyu    作者
+		Use sass (y/n)	 是否使用sass
+		Install vue-router  是否需要安装路由
+		Use ESLint to lint your code?(y/N)  是否需要语法检查
+		Setup unit tests with Karma + Mocha?(Y/n)	是否需要单元测试
+		Setup e2e tests with Nightwatch?(Y/n)  是否需要e2e
+		(项目生成完毕)
+	5) 生成的项目文件：	
+	
+		build目录:		打包的配置文件目录
+			build.js:	用于开发完成构建生产版本包
+			(核心)webpack.base.conf.js文件：	打包的核心配置文件
+			
+		config目录: 	打包的配置，webpack对应的配置	
+			(核心)index.js文件：	项目配置文件
+				dev对象：
+					env:	开发环境
+					prot:   端口
+					autoOpenBrowser:	是否自动打开浏览器
+					assetsSubDirectory:	子路径
+					assetsPublicPath:	文件引用的公共目录
+					
+		node_modules目录：	项目的依赖
+			
+		src目录:    	开发项目的源码
+			App.vue文件:	入口组件(.vue文件都是项目入口的组件)
+			main.js文件:	项目入口的文件
+			
+		static目录:			静态资源文件(图片等)
+		.babelrc文件:		ES6编译插件的配置文件(用来解析ES6)
+		.editorconfig文件:	编辑器的配置文件
+		.gitignore文件: 	git提交的忽略文件的配置文件
+		.postcssrc.js文件:	html添加前缀的配置文件
+		index.html文件:		单页面的入口
+		
+		package.json文件:	项目的基础配置文件
+			scripts对象: 	脚本命令
+				"dev": "node build/dev-server.js",  	//运行项目		npm run dev   或者  node build/dev-server.js
+				"start": "node build/dev-server.js",	//运行项目		npm run start 或者  node build/dev-server.js
+				"build": "node build/build.js"  		//打包dist文件	npm run build 或者  node build/build.js
+			dependencies对象:	项目的依赖库(项目真正需要依赖的框架插件等)
+			deDependencies对象: 开发依赖库(辅助插件,项目打包用的, 项目开发完就不需要了)
+			engines对象:		引擎
+			browserslist对象:	浏览器的列表
+			
+		README.md文件:		项目描述文件(可以写一些项目的使用方法)	
+		
+			
+	6) 运行项目
+		cd demo     进入项目目录
+		npm i 	     下载项目依赖的插件项
+		npm run dev	 运行项目开发模式(npm run dev ==  npm start ==  node build/dev-server.js)
+		
+3.www.npmjs.com		npm官网
+
+
+vue项目搭建命令小结：
+	npm i vue --save		安装vue(这类项目真正依赖的插件和框架, 在项目的主目录下, 也就是package.json配置文件所在的目录下安装才能成功)
+	npm i -g vue-cli		安装vue-cli
+	vue init webpack demo	初始化项目
+	cd demo					进入项目目录
+	npm i					下载项目依赖的插件项	
+	npm run dev				运行项目
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
