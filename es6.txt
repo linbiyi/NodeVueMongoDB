@@ -1,0 +1,301 @@
+1.var & let 块级变量(let和const没有变量提升的功能,var声明的变量有变量提升的功能,{}内限定了块级作用域)
+var name1 = "zhangsan";
+while (true) {
+	var name1 = "lisi";
+	console.log(name1); //lisi
+	break;
+}
+console.log(name1);   //lisi
+
+let name2 = "zhangsan";
+while (true) {
+	let name2 = "lisi";
+	console.log(name2); //lisi
+	break;
+}
+console.log(name2);   //zhangsan
+
+var a = [];
+for (var i=0; i<10; i++) {
+	a[i] = function () {
+		console.log(i);
+	};
+}
+a[6]();  //10
+
+var b = [];
+for (let i=0; i<10; i++) {
+	b[i] = function () {
+		console.log(i);
+	};
+}
+b[6]();  //6
+
+2.const 恒定常量
+const P = 13;
+console.log(P) //13
+P=15; // Assignment to constant variable
+
+const monent = require('moment');
+
+//const定义的常量是一个Object的块级地址,里面的值可以改,但是这个Object块级地址不能改
+const a = {x: 1};
+a.x = 2;	//a = {x: 2}
+a = {y: 1}  //错误
+ 
+3.class  extends super   类   继承   继承this
+父类
+class Animal{
+
+	constructor(){
+		this.type = 'animal';
+	}
+
+	says(say){
+		console.log(this.type + 'says' + say)
+	}
+}
+
+let animal = new Animal();
+animal.says('hello');
+//子类
+class Cat extends Animal{
+
+	constructor(){
+		super()
+		this.type = 'cat'
+	}
+}
+
+let cat = new Cat();
+cat.says('hello');
+
+4.arrow function   =>	(箭头函数没有作用域,它的作用域和外部的作用域保持统一)
+(function (i) {
+	return console.log(i+1);
+})(1);
+((i) => console.log(i + 1))(1)
+
+function a(x, y) {
+	x++;
+	y--;
+	return console.log(x + y + this);
+}
+a(1, 1); //2
+
+((x, y) => {x++; y--; return console.log(x + y +this)})(1, 1);
+
+5.template string   `${}`   
+(function (name, age, sex){
+	var a = '他的名字叫' + name + ',今年' + age + '岁了,他是一个' + sex + '生';
+	return console.log(a);
+})('小明', 18, '男');
+
+((name, age, sex) => {console.log(a = `他的名字叫${name},今年${age}岁了,他是一个${sex}生`)})('小明', 18, '男')
+
+let abc = (name, age, sex) => {console.log(a = `他的名字叫${name},今年${age}岁了,他是一个${sex}生`)};
+abc('小明', 18, '男');
+
+6.destructuring   解构(对数组或字符串等对象分解)
+let [a, b, c] = [3, 8, 10];		//数组解构
+let [x, y, z] = 'vue';			//字符串解构
+let {m, n} = {m: 10, n: 20};	//对象解构
+
+let cat = 'ken';
+let dog = 'lili';
+let zoo = {cat:'ken',dog:'lili'};
+console.log(zoo)
+
+let cat = 'ken';
+let dog = 'lili';
+let zoo = {cat,dog};
+console.log(zoo);
+
+let zoo = {cat:'ken',dog:'lili'};
+let {cat,dog} = zoo;
+console.log(cat,dog);
+
+7.default,rest  
+function animal(type){
+	type = type || 'cat';
+	console.log(type);
+}
+animal();
+animal('dog');
+
+//设定默认参数 type = 'cat' 如果调用的时候没有传参, 默认type为cat
+function animal(type = 'cat'){
+	console.log(type);
+}
+animal();
+animal('dog');
+
+function animal(a, b, c){
+	console.log(arguments)
+}
+animal('cat', 'dog', 'fish');
+
+function animal (a, ...abc) {
+	console.log(a)
+	console.log(abc)
+}
+animal();
+
+//...    不定参, 运算符, 拆解字符串
+//这里的...代表的是参数的不确定
+let sum = (...m) => {
+	let total = 0;
+	for (var i of m) {
+		total += i;
+	}
+	console.log(`total:${total}`)
+}
+sum(4,8,9,10);	//31
+
+//这里的...代表的是函数的扩展,这里起运算的作用,把数组拆解出来
+var [x,y] = [4,8];
+console.log(...[4,8]);	// 4 8
+
+let arr1 = [1,3]; 
+let arr2 = [2,4];
+[...arr1, ...arr2];  // 1 3 2 4
+
+let [x, ...y] = [3,8,10,30];
+console.log(y); // 8 10 30
+
+//这里的 ... 拆解字符串
+let a = [...'ES6'];
+console.log(a); //E S 6
+
+
+
+8.change
+let student = {name: 'Joe', age: 20};
+let change = {
+	set(a, key, value) {
+		console.log(a);
+		var a = a;
+		console.log(a.age)
+		console.log(key, value);
+		a[key] = value;
+	}
+};
+person = new Proxy(student, change);
+person.age = 30;
+
+
+9.Promise(通过链式调用解决回调地狱的复杂问题)
+let checkLogin =() => {
+	return new Promise((resolve, reject) => {
+		//判断cookie里有没有用户ID
+		let flag = document.cookie.indexOf("userId") > -1 ? true : false;
+		
+		if (flag) {
+			resolve({
+				status: 0,
+				result: true;	//登陆失败
+			})
+		} else {
+			reject("error");	//登陆失败
+		}
+	})
+};
+
+let getUserInfo = () => {
+	return new Promise((resolve, reject) => {
+		let userInfo = {
+			userId: "101"
+		}
+		resolve(userInfo)
+	});
+}
+
+//promise获取返回结果方法1,链式调用
+checkLogin().then((res) => {
+	if (res.status == 0) {
+		console.log("login success");
+		return getUserInfo();
+	}
+}).catch((error) => {
+	console.log(`errors:${error}`)
+}).then((res2) => {
+	console.log(`userId:${res2.userId}`)
+});
+
+//promise获取返回结果方法1,全部调用
+Promise.all([checkLogin(), getUserInfo()]).then(([res, res2]) => {
+	console.log(`result1:${res.result}, res2:${res2.userId}`)
+})；
+	
+	
+10.ES6模块式开发
+import {key} from {key: value}
+
+例如：
+在util.js导出暴露两个函数
+export let sum = (x, y) => (x + y)
+export let minus = (x, y) => (x - y)
+
+在index.js导入这两个函数
+import {sum, minus} from './util.js' 
+console.log(`sum:${sum(1,6)}, minus:${minus(8,2)}`)
+
+或在index.js导入这个函数
+import * as util from './util.js'
+console.log(`sum:${util.sum(1,6), minus:${util.minus(8,2)}}`)
+
+import异步加载js文件
+import('./../util.js')
+
+11.AMD , CMD , CommonJS , es6对比
+1)	AMD:
+异步模块定义，依赖前置,先加载所有
+AMD定义
+define(['package/lib'], function (lib) {	//通过数组依赖前置所有需要用的插件框架
+	function foo() {
+		lib.log('111');
+	}
+	return {
+		foo: foo	//回调
+	};
+});
+AMD加载：
+require('foo')		//加载
+
+2)	CMD:
+同步模块定义, 依赖就近,用的时候加载
+CMD定义加载
+define(function (require, exports, module) {
+	//通过require引入依赖
+	var $ = require('jquery');
+	var Spining = require('./spinning');
+})
+
+3)	CommonJS:
+module.exports(nodejs服务端使用,前端浏览器不使用)
+exports.sum = (x, y) => (x + y);
+exports.minus = (x, y) => {x - y};
+module.exports 进行输出
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
