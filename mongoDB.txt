@@ -1,15 +1,59 @@
 # MongoDB
 # 下载安装包
+# https://www.mongodb.com
+# https://pan.baidu.com/s/1mhPejwO
+# http://www.cnblogs.com/jacksoft/p/6910709.html
 # 添加db存储和日志存储文件夹
 # 添加服务、配置环境变量、启动Mongo
 
 1.安装MongoDB稳定版本(如3.23)
 2.创建一个MongoDB数据库目录,里面放三个子目录分别存放 数据文件, 日志文件, 配置文件
-3.(开发时不使用这种方式)使用命令行启动MongoDB数据库，用管理员权限打开cmd,进入安装目录 C:\Program Files\MongoDB\Server\3.4\bin 执行命令行：
+3.启动MongoDB数据库(开发时不使用这种方式)
+	用管理员权限打开cmd,进入安装目录 C:\Program Files\MongoDB\Server\3.4\bin 执行命令行：
 	mongod --dbpath	d:MongoDB\data 	指定mongodb的存储路径
-	(32位服务器没有journal启动失败： mongod --dbpath	d:MongoDB\data --journal 或默认存储引擎不能使用  mongod --dbpath	d:MongoDB\data --journal --storageEngine=mapv1)
+	(32位服务器没有journal启动失败： mongod --dbpath	d:MongoDB\data --journal 或默认存储引擎不能使用  mongod --dbpath	d:MongoDB\data --journal --storageEngine=mmapv1)
 	参数：
 		--dbpath	指定数据存储路径
 		--journal   指定日志默认启用
 		--storageEngine=mapv1	换一个存储引擎
-4.
+4.启动MongoDB数据库(常用开启)
+	先在mongodb存储路径的 配置目录d:\MongoDB\etc 下新增配置文件mongodb.conf,添加如下内容：
+		#数据库路径
+		dbpath=d:MongoDB\data
+
+		#日志输出文件路径
+		logpath=d:MongoDB\log\mongo.log
+
+		#错误日志采用追加模式,配置这个选项后mongodb的日志会追加到现有的日志文件,而不是重新创建一个新文件
+		logappend=true
+
+		#启用日志文件,默认启用
+		journal=true
+
+		#这个选项可以过滤掉一些无用的日志信息,若需要调试使用请设置为false
+		quiet=true
+
+		#端口号 默认为27017
+		port=27017
+
+		#指定存储引擎（默认先不加此引擎,如果报错了,再加,32位专用）
+		#storageEngine=mmapv1
+	
+	用管理员权限打开cmd,进入安装目录 C:\Program Files\MongoDB\Server\3.4\bin 执行命令行：
+	mongod --config	d:\MongoDB\etc\mongodb.conf
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

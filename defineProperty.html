@@ -19,6 +19,7 @@
 			},
 			//当给obj.name设置属性时自动执行set
 			set: function (value) {
+				debugger;
 				console.log('set')
 				document.getElementById('box').innerText = value;
 				document.getElementById('content').value = value;
@@ -26,6 +27,7 @@
 		});
 		//当鼠标按下的时候这个按下事件的目标的值被赋给了obj.name
 		document.getElementById('content').addEventListener('keyup', function () {
+			debugger;
 			obj.name = event.target.value;
 		})
 
