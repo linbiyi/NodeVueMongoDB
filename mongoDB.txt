@@ -7,7 +7,9 @@
 # 添加服务、配置环境变量、启动Mongo
 
 1.安装MongoDB稳定版本(如3.23)
+
 2.创建一个MongoDB数据库目录,里面放三个子目录分别存放 数据文件, 日志文件, 配置文件
+
 3.启动MongoDB数据库(开发时不使用这种方式)
 	用管理员权限打开cmd,进入安装目录 C:\Program Files\MongoDB\Server\3.4\bin 执行命令行：
 	mongod --dbpath	d:MongoDB\data 	指定mongodb的存储路径
@@ -16,7 +18,9 @@
 		--dbpath	指定数据存储路径
 		--journal   指定日志默认启用
 		--storageEngine=mapv1	换一个存储引擎
+		
 4.启动MongoDB数据库(常用开启)
+1)配置文件
 	先在mongodb存储路径的 配置目录d:\MongoDB\etc 下新增配置文件mongodb.conf,添加如下内容：
 		#数据库路径
 		dbpath=d:MongoDB\data
@@ -38,9 +42,48 @@
 
 		#指定存储引擎（默认先不加此引擎,如果报错了,再加,32位专用）
 		#storageEngine=mmapv1
-	
+		
+		#http服务 28017日志监听系统
+		httpinterface=true
+		
+2)链接mongodb
 	用管理员权限打开cmd,进入安装目录 C:\Program Files\MongoDB\Server\3.4\bin 执行命令行：
-	mongod --config	d:\MongoDB\etc\mongodb.conf
+	mongod --config	d:\MongoDB\etc\mongodb.conf 
+	
+	简化操作1)	
+	将mongod变成全局变量：
+		给mongod.exe配置环境变量,打开环境变量设置的全局环境变量Path，再后面添加mongod.exe的绝对路径(这样mongod就变成全局命令了,不需要进入安装目录也可以使用)
+		
+	简化操作2)
+	将 mongod --config	d:\MongoDB\etc\mongodb.conf 命令行命名为一个命令
+		mongod --config	d:\MongoDB\etc\mongodb.conf --install --serviceName "MongoDB"
+		
+3)进入数据库
+提示waiting for connections .., 表示你的mongodb已经启动了。
+不要关闭这个窗口，另启一个命令行，用 mongo 命令就可以进入数据库了。
+mongodb相关命令行:
+	mongo:	进入数据库
+	show dbs:	查看数据库
+	use Demo:	切换数据库/创建数据库(如果数据库中没有信息,则创建失败)
+	db.information.insert({id:1,"name":"兰宇","jobNumber":"lwx469789","company":"Google","position":"CEO"})	
+	db:	当前数据库
+	information： 表名
+	insert/save:  插入数据
+	db.information.find():	查找当前数据库information表中的数据
+	
+	
+	
+		
+5.MongoVue客户端
+	新建本机数据库：
+		Server: 127.0.0.1	(上线的时候换成项目的)
+		Port: 27017			(上线的时候换成项目的)
+		Username: 默认无
+		Password: 默认无
+		Database: 默认无
+		Test ---> save ---> Connect
+		
+6.MongoDB创建用户
 	
 	
 	
