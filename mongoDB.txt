@@ -1,0 +1,15 @@
+# MongoDB
+# 下载安装包
+# 添加db存储和日志存储文件夹
+# 添加服务、配置环境变量、启动Mongo
+
+1.安装MongoDB稳定版本(如3.23)
+2.创建一个MongoDB数据库目录,里面放三个子目录分别存放 数据文件, 日志文件, 配置文件
+3.(开发时不使用这种方式)使用命令行启动MongoDB数据库，用管理员权限打开cmd,进入安装目录 C:\Program Files\MongoDB\Server\3.4\bin 执行命令行：
+	mongod --dbpath	d:MongoDB\data 	指定mongodb的存储路径
+	(32位服务器没有journal启动失败： mongod --dbpath	d:MongoDB\data --journal 或默认存储引擎不能使用  mongod --dbpath	d:MongoDB\data --journal --storageEngine=mapv1)
+	参数：
+		--dbpath	指定数据存储路径
+		--journal   指定日志默认启用
+		--storageEngine=mapv1	换一个存储引擎
+4.
