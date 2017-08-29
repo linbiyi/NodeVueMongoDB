@@ -41,7 +41,9 @@
 		port=27017
 
 		#指定存储引擎（默认先不加此引擎,如果报错了,再加,32位专用）
-		#storageEngine=mmapv1
+		#3.2版本之后默认存储引擎为 wiredTiger, 此引擎效率比 mmapv1引擎的效率高, 但是该引擎生成的文件为.wt文件,MongoVue并不支持,显示不出数据库表, 
+		#而mmapv1引擎生成的文件为.0和.ns等文件,所以这个引擎可以用于适配MongoVue
+		storageEngine=mmapv1
 		
 		#http服务 28017日志监听系统
 		httpinterface=true
