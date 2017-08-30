@@ -1,0 +1,42 @@
+1.安装
+npm i -g express-generator
+2.版本
+express --version
+3.创建服务
+在项目主目录中: express server
+生成的文件：
+	bin: 可执行文件
+		www: 通过http创建server，监听端口开启服务
+	public: 静态资源文件
+	routes: 路由
+	views: jade视图模板
+	app.js: 入口文件
+	package.json: 配置文件,项目前后端分离时使用
+4.合并server和主目录下的package.json
+	1)把server下面的package.json中的依赖dependencies中的信息复制到主目录下的package.json中
+	2)删除server下面的package.json文件
+	3)在主目录中安装依赖  npm i
+	4)运行 node server\bin\www
+5.jade换成html
+	1)将jade文件删掉
+	2)安装 ejs 在主目录 npm i ejs --save 
+	3)app.js中添加：
+		var ejs = require('ejs');
+		app.engine('.html', ejs.__express);
+		app.set('view engine', 'html');
+6.在views中建立html页面
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

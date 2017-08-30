@@ -38,16 +38,20 @@
 	2)得到指定名称的表
 	db.getCollection("information")
 
-	3)得到当前db的所有表的集合
+	3)查询当前db的所有表名的集合
 	db.getCollectionNames()
 
 	4)显示当前db所有表索引的状态
 	db.printCollectionStats()
 	
 13.查数据
-	1)查询某表中所有记录
-	db.information.find()
+	1)查询某表中所有记录(如果数据太多分页查看输出 it 回车)
+	db.information.find() 
 	相当于：select * from information;
+	db.information.find().pretty()  查看的数据格式化
+	db.information.find({}, {id: 0, "name": 0})	查询表中所有数据,id和name字段不返回
+	db.information.find({}, {id: 1, "name": 1})	查询表中所有数据,id和name字段返回(默认返回)
+	
 	
 	2)查询某张表中的某个字段的重复数据(会过滤掉name字段中相同的数据)
 	db.information.distinct("name")
@@ -57,7 +61,7 @@
 	db.information.find({"name"="Bill"})
 	相当于：select * from information where name = Bill;
 
-	4)查询某张表中 id > 1 的数据 ($gt >, $lt <，$gte >=, $lte <=)
+	4)查询某张表中 id > 1 的数据 ($gt >, $lt <，$gte >=, $lte <=, $ne !=)
 	db.information.find({id: {$gt: 1}})
 	相当于: select * from information where id > 1;
 	
@@ -85,7 +89,7 @@
 	db.information.find({id: {$gt: 3}}, {name: 1, work: 1})
 	想当于： select name, work from information where id > 3;
 	
-	11)按照 number 大小 升序和降序查询
+	11)按照 number 大小 升序和降序查询 (1表示升序, -1表示降序)
 	升序: db.information.find().sort({number: 1})	
 	降序：db.information.find().sort({number: -1})
 	
@@ -100,7 +104,7 @@
 	14)查询前三条之后的5条数据
 	db.information.find().limit(5).skip(3)
 	
-	15)查询 id=2 或者 id=5 的数据
+	15)查询 id=2 或者 id=5 的数据($or 或者, $in 包含, $nin 不包含)
 	db.information.find({$or: [{id: 2}, {id: 5}]})
 	相当于：select * from information where id = 2 or id = 5;
 	
@@ -108,7 +112,7 @@
 	db.information.findOne()
 	相当于：select top 1 * from information;
 	
-	17)查询 id >= 5 的数据的个数
+	17)查询 id >= 5 的数据的个数 (count() 查询数量)
 	db.information.find({id: {$gte: 5}}).count()
 	相当于：select count(*) from information where id >= 5;
 	
@@ -140,8 +144,18 @@
 	db.information.dropIndexes()
 	
 15.添加数据
+	1)插入数据字段
 	db.information.insert({})
 	db.information.save({})
+	
+	2)导入数据表
+	mongoimport -d Lanyu -c shangpin --file D:\MongoDB\data\product.json --jsonArray
+	-d: 数据库
+	-c: 表名
+	--file: 数据文件地址
+	--jsonArray: 导入json文件专用,否则导入失败, json文件格式：[{},{},{},{},{}]
+	
+	
 	
 16.修改数据
 	1)修改表中条件为 name : "baiqi" 的数据的 字段 number($set设置)

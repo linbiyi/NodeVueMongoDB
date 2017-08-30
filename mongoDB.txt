@@ -48,7 +48,7 @@
 		#http服务 28017日志监听系统
 		httpinterface=true
 		
-2)链接mongodb
+2)启动mongodb服务器端
 	用管理员权限打开cmd,进入安装目录 C:\Program Files\MongoDB\Server\3.4\bin 执行命令行：
 	mongod --config	d:\MongoDB\etc\mongodb.conf 
 	
@@ -60,11 +60,11 @@
 	将 mongod --config	d:\MongoDB\etc\mongodb.conf 命令行命名为一个命令
 		mongod --config	d:\MongoDB\etc\mongodb.conf --install --serviceName "MongoDB"
 		
-3)进入数据库
+3)启动mongodb客户端
 提示waiting for connections .., 表示你的mongodb已经启动了。
 不要关闭这个窗口，另启一个命令行，用 mongo 命令就可以进入数据库了。
 mongodb相关命令行:
-	mongo:	进入数据库
+	mongo:	打开mongodb客户端
 	show dbs:	查看数据库
 	use Demo:	切换数据库/创建数据库(如果数据库中没有信息,则创建失败)
 	db.information.insert({id:1,"name":"兰宇","jobNumber":"lwx469789","company":"Google","position":"CEO"})	
@@ -85,10 +85,26 @@ mongodb相关命令行:
 		Database: 默认无
 		Test ---> save ---> Connect
 		
-6.MongoDB创建用户
+6.对于“C:\Program Files\MongoDB 2.6 Standard\bin”目录下的exe程序，做个简单的说明，可能更利于了解可以做些什么操作，基础学习关注mongod.exe和mongo.exe即可
+
+　　mongo.exe：客户端，支持js语法
+
+　　mongod.exe：服务端
+
+　　mongodump.exe：备份工具
+
+　　mongorestore.exe：恢复工具
+
+　　mongoexport.exe：导出工具
+
+　　mongoimport.exe：导入工具
+
+　　mongostat.exe：实时性能监控工具
+
+　　mongotop.exe：跟踪MongDB实例读写时间工具
 	
-	
-	
+7. mongoose
+	1)安装： npm i --save mongoose
 	
 	
 	

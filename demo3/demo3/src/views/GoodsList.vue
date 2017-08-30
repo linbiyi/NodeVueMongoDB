@@ -14,6 +14,8 @@
     <router-link to="/cart">用path跳转到购物车组件</router-link>
     <router-link v-bind:to="{name: 'cart', params: {cartId:123}}">用名字绑定购物车组件</router-link>
     <button @click="jump">用编程式路由跳转到购物车</button>
+    
+
 
 
   </div>
