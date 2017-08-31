@@ -9,4 +9,4 @@ var productSchema = new Schema({
 	"position": String
 });
 
-module.exports = mongoose.model('goods', productSchema, 'Lanyu');
+module.exports = mongoose.model('Goods', productSchema);
