@@ -5,39 +5,8 @@
     <title>Document</title>
 </head>
     <button id="btn">获取数据</button>
-    <script>
-    var btn = document.getElementById('btn');
-       btn.onclick = function () {
-            //ajax请求
-            var ajax;
-            if(window.XMLHttpRequest) {
-                ajax = new XMLHttpRequest();
-            }else if(window.ActiveXObject) {
-                ajax = new ActiveXObject('Microsoft.XMLHTTP');
-            }else {
-                alert('必须提高浏览器版本才能浏览!');
-                return false;
-            }       
-            //请求
-            ajax.open('get','www.baidu.com',true);
-            //ajax.setRequestHeader('Content-Type','application/x-www-form-urlencoded;charset=utf-8');
-            ajax.send();
-            //调
-            ajax.onreadystatechange = function(){
-                if(ajax.readyState == 4) {
-                    if(ajax.status == 304 || (ajax.status >= 200 && ajax.status < 300)) {
-                        var result = JSON.parse(ajax.responseText);
-                        if(this.isMounted()){
-                            this.setState({
-                                data: result,
-                            });
-                        }
-                    }
-                }
-            }.bind(this);
-        }
+    Hello world.
+ 
     
-    
-    </script>
 </body>
 </html>

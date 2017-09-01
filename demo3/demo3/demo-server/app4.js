@@ -24,4 +24,3 @@ MongoClient.connect(DB_CONN_STR, function(err, db) {
   });
 });
 
-示例源码

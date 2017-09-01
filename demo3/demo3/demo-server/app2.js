@@ -1,7 +1,7 @@
 //客户端
 var MongoClient = require('mongodb').MongoClient;
 //数据库
-var DB_CONN_STR = 'mongodb://localhost:27017/Lanyu';  
+var DB_CONN_STR = 'mongodb://127.0.0.1:27017/Lanyu';  
 //读取数据
 var selectData = function(db, callback) {  
   //连接到表  

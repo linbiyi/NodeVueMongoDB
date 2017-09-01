@@ -32,28 +32,29 @@
 		},
 		methods: {
 			get() {
-				this.$ajax.get('index.html', {
+				this.$ajax.get('http://127.0.0.1:3000/goods', {
 					params: {
-						useId: '999'
+						
 					},
 					headers: {
-						token: 'jack'
+						
 					},
 					before() {
 						console.log('before init')
 					}
 				}).then(res => {
 					this.msg = res.data;
+					console.log(this.msg)
 				}).catch(error => {
 					this.msg = error;
 				})
 			},
 			post() {
 				this.$ajax.post('index.html', {
-					useId: '888'
+					
 				}, {
 					headers: {
-						token: 'tom'
+						
 					}
 				}).then(res => {
 					this.msg = res.data;
@@ -63,16 +64,16 @@
 			},
 			http() {
 				this.$ajax({
-					url: 'index.html',
+					url: 'http://127.0.0.1:3000/goods',
 					methods: 'get',
 					data: {				
-						userId: '101'
+						
 					},
 					params: {			
-						userId: '102'
+						
 					},
 					headers: {
-						token: 'http-test'
+						
 					}
 				}).then(res => {
 					this.msg = res.data;

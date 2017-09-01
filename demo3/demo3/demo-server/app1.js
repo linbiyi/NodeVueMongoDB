@@ -5,9 +5,9 @@ var DB_CONN_STR = 'mongodb://localhost:27017/Lanyu';
 
 var insertData = function(db, callback) {  
     //连接到表  
-    var collection = db.collection('tb2');
+    var collection = db.collection('information');
     //插入数据
-    var data = [{"name":'wilson001',"age":21},{"name":'wilson002',"age":22}];
+    var data = [{"name":'刘洋',"age":21},{"name":'张三风',"age":22}];
     collection.insert(data, function(err, result) { 
         if(err)
         {
@@ -26,4 +26,3 @@ MongoClient.connect(DB_CONN_STR, function(err, db) {
     });
 });
 
-示例源码
