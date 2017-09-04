@@ -22,7 +22,7 @@
 		},
 		mounted: function () {
 			this.$ajax.interceptors.request.use(function (config) {
-				console.log('request init');
+				console.log('  init');
 				return config;
 			}),
 			this.$ajax.interceptors.response.use(function (response) {

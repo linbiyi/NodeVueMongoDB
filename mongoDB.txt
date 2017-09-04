@@ -5,7 +5,30 @@
 # http://www.cnblogs.com/jacksoft/p/6910709.html
 # 添加db存储和日志存储文件夹
 # 添加服务、配置环境变量、启动Mongo
+MongoDB的Linux安装配置
+下载:
+解压：tar -zxvf mongodb-linux-x86_64-ubuntu1404-3.4.4.tgz
+mkdir mongodb
+mv mongodb-linux-x86_64-ubuntu1404-3.4.4 mongodb
+cd mongodb
+mkdir data logs etc
+logs里面 vim mongo.log
+etc里面	vim mongo.conf 写入配置文件
+	dbpath=/mongodb/data
+	logpath=/mongodb/logs/mongo.log
+	logappend=true
+	journal=true
+	quiet=true
+	port=27017
+	storageEngine=mmapv1
+ln -s /mongodb/mongodb-linux-x86_64-ubuntu1404-3.4.4/bin/mongo /usr/local/bin/mongo
+ln -s /mongodb/mongodb-linux-x86_64-ubuntu1404-3.4.4/bin/mongod /usr/local/bin/mongod
+mongod -f /mongodb/etc/mongo.conf
 
+
+
+
+MongoDB的windows安装配置
 1.安装MongoDB稳定版本(如3.23)
 
 2.创建一个MongoDB数据库目录,里面放三个子目录分别存放 数据文件, 日志文件, 配置文件

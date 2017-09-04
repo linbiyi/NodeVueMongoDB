@@ -1,0 +1,26 @@
+1.思路整理
+数据库(MongoDB数据库) --- 后端(Nodejs的服务器) --- 前端(Nodejs的客户端) 之间交互的实现
+ 
+数据库:
+	目的：创建一个数据库表,供后端调用
+	1)开启数据库的服务端: mongod --config D:\MongoDB\etc\MongoDB.conf
+	2)开启数据库客户端: mongo	
+	3)创建一个数据库表: mongo的命令行
+	(查看操作日志:localhost:28017)
+	
+后端:
+	目的：创建一个服务器并开启,对数据库的数据进行操作,并生成一个接口供前端调用
+	1)安装服务：express server (对express目录进行一些适合自己的配置)
+	2)开启服务：node server\bin\www (输入http://localhost:3000/查看服务是否开启)
+	3)调取数据库信息：使用mongoose插件获取对应的数据库表做成model
+	4)使用路由调取model: 
+		在app.js中设置读取二级路由routes文件中的对应接口文件xxx.js:
+			var app = express();
+			var xxx = app.require('./routes/xxx');
+			app.use('/xxx', xxx);
+		(app.js读取的默认路径为 ./routes/index.js 文件,此文件的默认打开路径为http://127.0.0.1:3000/,也就是服务端,也是客户端要获取的接口url)
+	5)配置被调取的路由文件xxx,这个文件就是接口,在routes/目录下,此文件的默认打开路径为http://127.0.0.1:3000/xxx
+	
+前端:
+	创建一个客户端
+
