@@ -15,4 +15,45 @@
 	
 	5)	Common规范
 	
+3.http服务
+	1)加载http模块
+	var http = require('http');
+	2)创建web服务器,监听设置的IP的端口,返回请求体和响应体
+	http.createServer(function (req, res) {
+		res.writeHead(200, {'Content-Type': 'text/plain'});
+		res.end('Hello World\n');
+	}).listen(1337, '127.0.0.1');
+	console.log('Server running at http://127.0.0.1:1337/');
+	
+4.模块的流程
+	1)创建模块
+	2)导出模块	exports.模块名 = 模块名	 或者  module.exports = 模块名
+	3)加载模块	require
+	4)使用模块
+	
+5.Nodejs的相关指令
+	node	进入node操作界面
+	process		nodejs的全局变量,类试于js的window对象
+	
+6.URL
+	node	进入node操作界面
+	url		查看url的使用方法
+	url.parse('www.baidu.com')	将url地址解析成对象
+		protocol:	底层使用的协议
+		slashes:	是否有协议的双斜线//
+		auth:		
+		host:		IP地址/域名
+		port:		端口
+		hostname:	主机名
+		hash:		锚点
+		search:		查询字符串参数
+		query:		发送给http服务器的数据
+		pathname:	访问资源路径名
+		path:		路径
+		href:		超链接
+		
+	
+
+	
+	
 	
