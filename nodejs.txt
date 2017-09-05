@@ -38,7 +38,7 @@
 6.URL
 	node	进入node操作界面
 	url		查看url的使用方法
-	url.parse('www.baidu.com')	将url地址解析成对象
+	1)url.parse('www.baidu.com')	将url地址解析成对象
 		protocol:	底层使用的协议
 		slashes:	是否有协议的双斜线//
 		auth:		
@@ -51,6 +51,102 @@
 		pathname:	访问资源路径名
 		path:		路径
 		href:		超链接
+	  url.parse('//imooc.com:/course/list', true, true)
+ 
+	2)url.format({})	将url对象解析成url地址
+	3)url.resolve('http://immoc.com/', '/course/list')
+	
+7.querystring(将请求的参数对象转换成字符串)
+	1)querystring.stringify({name: 'scott', course: ['jade', 'noed'], from: ''})	(默认对象的key:value解析成 key=value, 各键值对以&链接)
+	解析后:	'name=scott&course=jade&course=node&from='	
+	
+	2)querystring.stringify({name: 'scott', course: ['jade', 'noed'], from: ''}, ',')	(用,取代键值对间的&链接符)
+	解析后:	'name=scott,course=jade,course,node,from='
+	
+	3)querystring.stringify({name: 'scott', course: ['jade', 'noed'], from: ''}, ',', ':')	(用:取代键值对间的=号)
+	解析后:	'name:scott,course:jade,course,node,from:'
+	
+	4)querystring.parse('name=scott&course=jade&course=node&from=')		和querystring.stringify相反
+	解析后: {name: 'scott', course: ['jade', 'noed'], from: ''}
+	
+	5)querystring.parse('name=scott,course=jade,course=node,from=', ',')	和querystring.stringify相反
+	
+	6)querystring.parse('name:scott,course:jade,course:node,from:', ',', ':')	和querystring.stringify相反
+	
+	7)querystring.escape('<哈哈>')		//querystring.escape('params')
+	转义字符：%3C%E593%88%E5%93%88%3E
+	
+	8)querystring.unescape('%3C%E5%93%88%E5%93%88%3E')
+	反转义: <哈哈>
+	
+8.http
+1)http客户端发起请求,创建端口
+2)http服务器在端口监听客户端请求
+3)http服务器向客户端返回状态和内容
+流程：
+	1)浏览器搜索自身的DNS缓存(查看chrome浏览器的缓存: chrome://net-internals/#dns)
+	2)搜索操作系统自身的DNS缓存(浏览器没有找到缓存或缓存已经失效,该缓存保存时间大概1分钟)
+	3)读取本地的HOST文件(在windows/system32/目录中)
+	4)浏览器发起一个DNS的一个系统调用
+		1.宽带运营商服务器查看本身缓存
+		2.运营商服务器发起一个迭代DNS解析的请求
+		3.运营商服务器把结果返回操作系统内核同时缓存起来
+		4.操作系统内核把结果返回浏览器
+		5.最终浏览器拿到了www.baidu.com对用的IP地址
+	5)浏览器获得域名对应的IP地址后,发起HTTP"三次握手"
+		三次握手: 客户端问服务器端：能听到我说话吗？？？
+				  服务器端回复客户端：可以听到。。。
+				  客户端再回复服务器端：开始数据交互吧！！！
+	6)TCP/IP链接建立起来后,浏览器就可以向服务器发送HTTP请求了,比如,用HTTP的GET方法请求一个域名,协议HTTP 1.0
+	7)服务器接到请求,根据路径参数,经过后端处理,返回结果数据给浏览器
+	8)浏览器拿到数据解析和渲染页面
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		
 	
 
