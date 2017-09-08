@@ -1,0 +1,8 @@
+http默认端口为80
+https默认端口为443
+服务器设置监听80端口的项目外部访问地址：
+http://xxx.xxx.xxx.xxx  或者  http://xxx.com
+https://xxx.xxx.xxx.xxx  或者  https://xxx.com
+如果是非80和443端口,例如 8081端口,访问为
+http://xxx.xxx.xxx.xxx:8081  或者  http://xxx.com:8081
+https://xxx.xxx.xxx.xxx:8081  或者  https://xxx.com:8081
