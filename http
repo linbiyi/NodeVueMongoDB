@@ -1,8 +1,26 @@
-http默认端口为80
-https默认端口为443
-服务器设置监听80端口的项目外部访问地址：
-http://xxx.xxx.xxx.xxx  或者  http://xxx.com
-https://xxx.xxx.xxx.xxx  或者  https://xxx.com
-如果是非80和443端口,例如 8081端口,访问为
-http://xxx.xxx.xxx.xxx:8081  或者  http://xxx.com:8081
-https://xxx.xxx.xxx.xxx:8081  或者  https://xxx.com:8081
+1.什么时候需要输入端口号？
+  http默认端口为80, https默认端口为443 
+  服务器设置监听80端口的项目外部访问地址：
+  http://xxx.xxx.xxx.xxx  或者  http://xxx.com
+  https://xxx.xxx.xxx.xxx  或者  https://xxx.com
+  如果是非80和443端口,例如 8081端口,访问为
+  http://xxx.xxx.xxx.xxx:8081  或者  http://xxx.com:8081
+  https://xxx.xxx.xxx.xxx:8081  或者  https://xxx.com:8081
+
+2.为何要进行域名解析？
+  要使用域名代替前必须先进行 域名解析 和 域名绑定
+  域名解析：就是将域名指向你的主机的IP地址的一个子目录, 服务由DNS完成
+  域名绑定：就是将主机的空间和指定域名绑定, 使一个域名被指导向一特定空间，访问者访问你的域名的时候就会打开你存放在该空间上的网页
+  
+3.为何要备案？
+  未备案的域名不能访问80端口,所以要备案,但是443端口可以访问，也可以通过ip地址访问,所以未备案的域名和备案域名的区别为：
+  未备案访问：
+    http://xxx.xxx.xxx.xxx (http+80端口)
+    http://xxx.com:8081    (http+非80端口)
+    http://www.xxx.com:8081
+    https://xxx.com        (https+443端口)
+    https://www.xxx.com
+   已备案访问：
+    除了上面的访问方式,还多了一条
+    http://xxx.com
+    http://www.xxx.com     (http+80端口)
