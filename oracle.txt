@@ -58,16 +58,19 @@ oracle命令
 		temp: 临时表空间 存储索引信息
 		users: 存储数据库用户创建的数据库对象
 		example: 辅助表空间,安装oracle11g示例
-7） 创建一个表useinfo
+
+操作表
+
+1） 创建一个表useinfo
 	create table userinfo 
 	( id number(6,0),
 	username varchar2(20),
 	userpwd varchar2(20),
 	email varchar(30),
 	regdate date);	
-8） 查看表
-	desc 表名
-9） 修改表(修改的是表的结构,非表中的数据)
+2） 查看表
+	desc table_name
+3） 修改表(修改的是表的结构,非表中的数据)
 	1.添加字段：alter table table_name
 		   add column_name datatype;
 	  例：alter table userinfo
@@ -88,6 +91,24 @@ oracle命令
 	      rename column email to phone;
 	5.修改表名：rename table_name to new_table_name;
 	  例：rename userinfo to new_userinfo;
+4) 删除表
+	1) 截断表,清空表内数据   truncate table new_userinfo;
+	2) 删除整个表    drop table new_userinfo;
+	
+操作数据
+
+1）添加数据 insert into table_name (column1,column2, ...) 
+           values(value1,value2, ...)
+   向所有字段添加值 insert into userinfo 
+                   values(1, 'xxx', '123', 'xxx@126.com', sysdate);     sysdate为当前的日期
+   向指定字段添加值 insert into userinfo(id, username, userpwd)
+                   values(2, 'yyy', '123');
+   给指定字段添加默认值 creat table userinfo1
+                      (id number(6,0),
+		      regdate date default sysdate); 		(添加了默认日期)
+		      
+		      insert init userinfo1(id)
+		      values(1)
 	
 	
 	
