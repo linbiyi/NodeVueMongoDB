@@ -109,6 +109,18 @@ oracle命令
 		      
 		      insert init userinfo1(id)
 		      values(1)
+   给指定字段添加默认值 alter table userinfo
+                      modify email default '无';     (修改了默认email为无)
+		      
+		      insert init userinfo(id)
+		      values(3);
+2）复制数据
+   在建表时复制 create table new_table
+               as
+	       select column1,...|* from old_table
+   在添加时复制 insert into new_table
+               (column1,...)
+	       select column1,...|* from old_table
 	
 	
 	
