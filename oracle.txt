@@ -124,7 +124,10 @@ oracle命令
 3) 修改数据
    update table_name
    set column=value,...
-   [what conditions]
+   [where conditions]
+4) 删除数据
+   delete from table_name
+   [where conditions]
 	
 	
 	
