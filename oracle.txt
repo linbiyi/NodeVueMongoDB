@@ -58,6 +58,13 @@ oracle命令
 		temp: 临时表空间 存储索引信息
 		users: 存储数据库用户创建的数据库对象
 		example: 辅助表空间,安装oracle11g示例
+7） 创建一个表
+	create table 表名 
+	( id number(6,0),
+	username varchar2(20),
+	userpwd varchar2(20),
+	email varchar(30),
+	regdate date);	
 	
 	
 	
