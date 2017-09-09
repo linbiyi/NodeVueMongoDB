@@ -121,6 +121,10 @@ oracle命令
    在添加时复制 insert into new_table
                (column1,...)
 	       select column1,...|* from old_table
+3) 修改数据
+   update table_name
+   set column=value,...
+   [what conditions]
 	
 	
 	
