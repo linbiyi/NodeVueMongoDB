@@ -69,7 +69,8 @@ oracle命令
 	email varchar(30),
 	regdate date);	
 2） 查看表
-	desc table_name
+	查看某个表空间里面的表名： select table_name,tablespace_name from dba_tables where tablespace_name='大写的表空间';
+	查看某个表的具体信息： desc table_name
 3） 修改表(修改的是表的结构,非表中的数据)
 	1.添加字段：alter table table_name
 		   add column_name datatype;
