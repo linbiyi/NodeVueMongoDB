@@ -1,4 +1,4 @@
-用户 > 表空间(tablespaces 数据库) > 表(table) > 字段(column 域 列) > 数据(字符, 数值, 日期, 其他)
+用户 > 表空间(tablespaces 数据库) > 表(table table_name) > 字段(column 域 列 column_name) > 数据(字符, 数值, 日期, 其他)
 
 oracle自带插件
 1) SQL PLus: oracle自带的字符操作界面,用于操作数据库
