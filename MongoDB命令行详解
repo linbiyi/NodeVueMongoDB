@@ -162,6 +162,7 @@
 	db.information.update({name: "baiqi"}, {$set: {number: "111"}}, false, true)
 	第一个false表示不新增数据
 	相当于：update information set number = '111' where name = "baiqi";
+	db.users.update({_id: ObjectId("58c41d5d3eddd93e9ab5b078")}, {$set: {userName: "lanyu123"}}, false, true)
 	
 	2)修改表中条件为 name : "mayun" 的数据 让 number = number + 111, id = id + 2($inc自增)
 	db.information.update({name: "mayun"}, {$inc: {number: 111, id: 2}}, false, true)

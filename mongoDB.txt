@@ -5,7 +5,8 @@
 # http://www.cnblogs.com/jacksoft/p/6910709.html
 # 添加db存储和日志存储文件夹
 # 添加服务、配置环境变量、启动Mongo
-MongoDB的Linux安装配置
+
+MongoDB的Linux安装配置及使用
 下载:
 解压：tar -zxvf mongodb-linux-x86_64-ubuntu1404-3.4.4.tgz
 mkdir mongodb
@@ -25,6 +26,9 @@ ln -s /mongodb/mongodb-linux-x86_64-ubuntu1404-3.4.4/bin/mongo /usr/local/bin/mo
 ln -s /mongodb/mongodb-linux-x86_64-ubuntu1404-3.4.4/bin/mongod /usr/local/bin/mongod
 mongod -f /mongodb/etc/mongo.conf
 
+导入表
+apt-get install mongodb-clients (安装mongodb客户端,才能使用mongoimport插件导入数据表)
+mongoimport -d db_name -c connections_name --file connections_path --journal (是json文件就加--journal 不是就不用加)
 
 
 
@@ -128,6 +132,7 @@ mongodb相关命令行:
 	
 7. mongoose
 	1)安装： npm i --save mongoose
+	
 	
 	
 	

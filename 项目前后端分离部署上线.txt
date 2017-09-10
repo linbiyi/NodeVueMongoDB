@@ -1,0 +1,21 @@
+1.部署服务端
+1)分离前后端依赖
+	拷贝package.json到server下
+	删除package.json中后端不需要的依赖(vue,webpack和babel相关的,babel是解析es6用的插件,node服务端本身支持es6,不需要)
+2)将server代码传到服务器
+3)进入server里面安装依赖 npm i
+4)使用Node或者pm2打开www服务器
+5)如果3000端口被占用了,就进入www文件内改成4000
+  或者输入 lsof -i:3000  来查看是哪个程序占用了端口,获取该程序的 pid
+  然后输入 kill -9 该程序的pid  杀掉该程序
+  接着重新开启服务器
+
+2.部署前端
+1)通过node部署,将前端代码放在server/views目录中 
+  修改server/app.js 
+		//app.use(express.static(path.join(__dirname, 'public')));
+		app.use(express.static(path.join(__dirname, 'views')));
+   将打完包后的前端代码 dist 目录下面的文件上传到 server/views 目录下
+   
+3.在后台打开数据库
+	mongod --fork -f /Mongodb/etc/mongod.conf	(--fork 让mongodb在后台打开)

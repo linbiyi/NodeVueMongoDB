@@ -21,8 +21,8 @@ scott: 默认密码tiger
 	字符型：
 		char(n): 最大长度2000, 固定长度, 会自动补齐长度
 		nchar(n): 最大长度1000, 固定长度, 会自动补齐长度, unicode格式, 常用于存储汉字
-		varchar(n): 最大长度4000, 长度不固定
-		nvarchar(n): 最大长度2000,, unicode格式
+		varchar2(n): 最大长度4000, 长度不固定, 常用于存储字符串
+		nvarchar2(n): 最大长度2000,, unicode格式
 	数值型：
 		number(p,s): p有效数字,s小数点后的位数, 例： number(5,2)  123.23
 		float(n): 不常用
@@ -54,7 +54,7 @@ oracle命令
 	select tablespace_name from user_tablespaces;   查看表空间的名字
 		system：系统表空间,存放系统信息
 		sysaux:
-		undotbs1: UNDO表空间
+		undotbs1: UNDO表空间 存储备份数据
 		temp: 临时表空间 存储索引信息
 		users: 存储数据库用户创建的数据库对象
 		example: 辅助表空间,安装oracle11g示例
@@ -66,7 +66,7 @@ oracle命令
 	( id number(6,0),
 	username varchar2(20),
 	userpwd varchar2(20),
-	email varchar(30),
+	email varchar2(30),
 	regdate date);	
 2） 查看表
 	查看某个表空间里面的表名： select table_name,tablespace_name from dba_tables where tablespace_name='大写的表空间';
@@ -131,6 +131,72 @@ oracle命令
    [where conditions]
 	
 	
+约束：定义规则
+	1.非空约束: 所约束的列不能为NULL值。否则就会报错
+	NOT NULL
+		例:
+		创建表时添加非空约束：
+		   create table userinfo_1
+		   (id number(6,0),
+		   username varchar2(20) not null,
+		   userpwd varchar2(20) not null);
+		修改时增加非空约束
+		   alter table userinfo
+		   modify username varchar2(20) not null;
+		去除非空约束:
+		   alter table userinfo
+		   modify username varchar2(20) null;
+		   
+	2.主键约束：唯一的标识表中的每一行，不能重复，不能为空。 创建主键或唯一约束后，ORACLE会自动创建一个与约束同名的索引（UNIQUENES为UNIQUE唯一索引）。
+				需要注意的是：每个表只能有且有一个主键约束。
+		例：
+		在字段后添加约束：
+		   create table userinfo_1
+		   (id number(6,0) primary key,
+		   username varchar2(20),
+		   userpwd varchar2(20); 
+		表创建完添加约束：
+		   create table userinfo_1
+		   (id number(6,0),
+		   username varchar2(20),
+		   userpwd varchar2(20),
+		   constraint userinfo_id_username primary key(id,username));
+		   
+	
+	3.外键约束：用来约束两个表中列之间的关系。用来维护从表（Child Table）和主表（Parent Table）之间的引用完整性. 外键约束是个有争议性的约束，它一方面能够维护数据库的数据一致性，
+				数据的完整性。防止错误的垃圾数据入库； 另外一方面它会增加表插入、更新等SQL性能的额外开销，不少系统里面通过业务逻辑控制来取消外键约束。
+				例如在数据仓库中，就推荐禁用外键约束。
+	
+	4.唯一约束：在表中每一行中所定义的这列或这些列的值都不能相同。必须保证唯一性。否则就会违法约束条件。
+	
+	5.检查(条件)约束：用来约束表中列的输入值得范围，比如在输入性别时，要求数据库中只能输入男或者女，就可以使用检查约束来约束该列。表中每行都要满足该约束条件。
+				条件约束既可以在表一级定义也可以在列一级定义。在一列上可以定义任意多个条件约束。
+				
+				
+				
+oracle查询语句
+	1.查询指定名称为ABC的表
+		select * from user_tables where table_name='ABC';
+	  当前用户下的表
+		select * from user_tables;
+	  有权限查询的表
+	    select * from all_tables;
+	  如果有dba权限,可查询数据库所有表
+	    select * from dba_tables;
+	  查询空数据的表	
+		select * from all_all_tables where num_rows=0 and owner =XXXX;
+	
+	2.查询某张表中约束的名字
+		select constraint_name from user_constraints where table_name='userinfo';
+		
+	3.基本查询语句
+		select [distinct] column_name1,...|* 
+		from table_name 
+		[where conditions]
+	
+		
+
+	  
 	
 	
 	
