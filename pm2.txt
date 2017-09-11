@@ -9,5 +9,10 @@ PM2
 	pm2 list
 	pm2 show app
 	pm2 log / pm2 logs
-	
+4)关闭服务
+	pm2 status	查看要关闭的服务名称/id
+	pm2 stop appname/id  停止要关闭的服务名称/id
+	pm2 delete appname/id  删除要关闭的服务
+5)查看nginx监听的端口是否存在
+	netstat -ntlp|grep nginx
 	
