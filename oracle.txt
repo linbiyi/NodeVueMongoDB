@@ -1,5 +1,13 @@
 用户 > 表空间(tablespaces 数据库) > 表(table table_name) > 字段(column 域 列 column_name) > 数据(字符, 数值, 日期, 其他)
 
+dba_tables: 系统所有的表信息, 需要DBA权限才能查询
+all_tables: 当前用户有权限的表信息（要某表任何权限即视图看表相关信息）
+user_tables: 当前用户名下的表信息
+like: %a%  包含匹配,包含a的都算
+comment on table is "msg";  添加表注释
+comment on column table.id is "idmsg";  添加字段注释 
+
+
 oracle自带插件
 1) SQL PLus: oracle自带的字符操作界面,用于操作数据库
 2) Database Control: 用于打开oracle的企业管理工具
