@@ -146,6 +146,7 @@
 15.添加数据
 	1)插入数据字段
 	db.information.insert({})
+	例如:	db.information.update({}, {$set:{username: '', userpwd: ''}}, false, true);
 	db.information.save({})
 	
 	2)导入数据表
