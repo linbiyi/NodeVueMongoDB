@@ -1,0 +1,55 @@
+如果是非root用户,所有命令前都使用sudo权限执行
+
+1.安装
+sudo apt-get install nginx  
+
+2.查看版本
+nginx -v
+
+3.nginx的安装目录
+/etc/nginx
+
+4.nginx反向代理配置文件
+/etc/nginx/conf.d目录
+配置文件目录
+配置文件内容：
+server {
+	listen 80;
+	server_name itjrn.com;	
+	
+	location / {
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
+		proxy_set_header Host $http_host;
+		proxy_set_header X-Nginx-Proxy true;
+		
+		proxy_pass http://119.23.31.41:8081;			
+		proxy_redirect off;
+	}
+}
+该配置文件表示, http://119.23.31.41:8081 的服务被反向代理到 itjrn.com:80 上, 也就是使用	itjrn.com 打开网站
+	
+	
+5.nginx的自带配置文件
+/etc/nginx/nginx.conf目录
+include /etc/nginx/conf.d/*.conf   将conf.d下的所有conf配置文件加载进来
+include /etc/nginx/sites-enabled/*  将sites-enabled下的所有配置文件加载进来
+
+6.测试配置文件是否成功
+nginx -t 
+
+7.重启nginx 
+nginx -s  reload
+
+
+
+
+
+
+
+
+
+
+
+
+
