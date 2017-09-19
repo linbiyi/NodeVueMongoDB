@@ -2,7 +2,7 @@ PM2
 基于nodejs的进程管理插件,可以一直开启Node服务
 1)安装
 	npm install pm2 -g
-	ln -s /node-v6.10.3-linux-x64/bin/pm2 /usr/local//bin/pm2	(生成软连接,变成全局变量)
+	ln -s /node-v6.10.3-linux-x64/bin/pm2 /usr/local/bin/pm2	(生成软连接,变成全局变量)
 2)开启服务(代替node 例如 node app.js  变成  pm2 strat app.js)
 	pm2 start app.js
 3)查看进程或者日志
