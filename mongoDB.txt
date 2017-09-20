@@ -29,7 +29,11 @@ mongod -f /mongodb/etc/mongo.conf
 导入表
 apt-get install mongodb-clients (安装mongodb客户端,才能使用mongoimport插件导入数据表)
 mongoimport -d db_name -c connections_name --file connections_path --journal (是json文件就加--journal 不是就不用加)
-
+-d 数据库
+db_name 数据库名
+-c 表
+connections_name 表名
+connections_path 被导入表的地址
 
 
 MongoDB的windows安装配置
