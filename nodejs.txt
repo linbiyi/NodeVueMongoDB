@@ -114,6 +114,17 @@ I/O：磁盘数据的入和出
 					EventEmitter
 事件循环：eventLoop(回调函数队列) 当有大量的异步操作时,例如控制器的延时操作,它们完成的时候都要调用相应的回调函数,从而完成一些密集的任务,
 		而又不会阻塞整个程序执行的流程,这需要一种机制来管理,这种机制就是事件循环。
+		
+9.  module.exports 和 exports 的区别
+var a = {     //a相当于modeule.exports
+  age: 10,
+};
+var b = a;    //b相当于exports
+这个过程中b是指向a的引用,两者指向统一的内存空间。
+两者的区别：
+  1)modele.exports初始值为一个空对象{} 
+  2)exports是指向的module.exports的引用
+  3)require()返回的是module.exports而不是exports
 
 
 
