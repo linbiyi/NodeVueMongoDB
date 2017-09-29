@@ -125,6 +125,36 @@ var b = a;    //b相当于exports
   1)modele.exports初始值为一个空对象{} 
   2)exports是指向的module.exports的引用
   3)require()返回的是module.exports而不是exports
+  
+10.module.exports的用法
+在nodejs中"编译"是以模块为基本单位的, 一个模块映射一个文件, 所以各文件是无法访问其他文件中的属性和方法的, 那么就需要对外暴露属性和方法。
+暴露有两种情况, 一种是单个暴露, 一种是暴露类
+单个暴露：
+var x = 5;
+var y = 6;
+var addX = function (value) {
+	return value + x;
+}
+module.exports.x = x;   //可以看成 {}中的x和addx变量指向该文件中的 x和 addX
+module.exports.addX = addX;
+
+暴露类：
+var User = function (name, email) {
+	this.name = name;
+	this.email = email;
+}
+module.exports = User; //相当于将空对象 {} 指向 这个 User对象    可以看成 module.exports == {}
+
+这里module.exports.User = User;和 module.exports = User;有什么区别
+二者的调用方式分别为：
+var user = require('./user');
+前者
+var u = new user.User();   //前者把User保存到了{}暴露出来, 即{User}, 所以这么调用
+后者
+var u = new user();   //后者把{}直接指向User ,即 {} = User, 所以这么调用
+
+
+
 
 
 
