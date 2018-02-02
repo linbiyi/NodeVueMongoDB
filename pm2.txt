@@ -5,6 +5,7 @@ PM2
 	ln -s /node-v6.10.3-linux-x64/bin/pm2 /usr/local/bin/pm2	(生成软连接,变成全局变量)
 2)开启服务(代替node 例如 node app.js  变成  pm2 strat app.js)
 	pm2 start app.js
+	pm2 start all  开启所有服务
 3)查看进程或者日志
 	pm2 list
 	pm2 show app
@@ -12,6 +13,7 @@ PM2
 4)关闭服务
 	pm2 status	查看要关闭的服务名称/id
 	pm2 stop appname/id  停止要关闭的服务名称/id
+	pm2 stop all  停止所有项目
 	pm2 delete appname/id  删除要关闭的服务
 5)查看nginx监听的端口是否存在
 	netstat -ntlp|grep nginx
