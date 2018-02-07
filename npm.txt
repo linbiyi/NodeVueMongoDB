@@ -1,6 +1,7 @@
 npm i -g cnpm --registry	安装npm的淘宝镜像cnpm
 npm -v 查看版本号
 npm list 查看当前目录安装的模块
+npm i 安装package.json中的所有依赖的模块插件以及node自带的模块
 npm i vue --save 安装vue模块到依赖中(--save是将插件安装到package.json中的dependencies项目依赖中,在项目的主目录下, 也就是package.json配置文件所在的目录下安装才能成功)
 npm i vue --save-dev
 node 进入node的shell操作模式
