@@ -7,7 +7,7 @@ node 进入node的shell操作模式
 node xxx.js  用node运行xxx.js文件
 
 2.vue-cli构建SPA应用
-npm i -g vue-cli
+npm i -g vue-cli	安装vue-cli脚手架是为了可以初始化webpack等项目模板
 vue init webpack-simple demo  (vue 是shell命令)初始化webpack简单模式下的项目(demo 是项目名）
 vue init webpack demo2 初始化一个webpack完整的项目
 
