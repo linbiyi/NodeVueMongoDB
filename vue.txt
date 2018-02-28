@@ -406,9 +406,27 @@ v-on:keyup	键盘案件事件
 				}
 			},
 			
-		})
-		// 使用mutations同步提交改变状态
-		store.commit('add')
+		});
+		
+		new Vue({
+			el: "#app",
+			store,
+			data() {
+				return {}
+			}
+		});
+		
+		// 在#app的子组件中的computed监听num变化, methods中使用mutations同步提交改变状态
+		computed: {
+			// 监听num变化
+			fn1: {
+				return this.$store.state.num
+			}
+		},
+		methods: {
+			// 提交num变化
+			this.$store.commit('add')
+		}
 		
 	使用Vuex对象: 
 		this.$store
