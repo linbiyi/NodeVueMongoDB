@@ -385,6 +385,72 @@ v-on:keyup	键盘案件事件
 			在组件中使用axios的方式：
 				使用 this.$ajax 代替原来的 axios 即可,其他不变
 			
+9. Vuex (状态管理, 类似window这个全局变量) 
+	导入Vuex： 
+		import Vuex from 'Vuex'
+	新建一个Vuex对象: 
+		const store = new Vuex.Store({
+			state: {
+				num: 0
+			},
+			getters: {},
+			mutations: {
+				add(state) {
+					state.num++
+				}
+			},
+			actions: {
+				add(context) {
+					// 使用actions异步提交改变状态
+					context.commit('add')
+				}
+			},
+			
+		})
+		// 使用mutations同步提交改变状态
+		store.commit('add')
+		
+	使用Vuex对象: 
+		this.$store
+
+	可以避免大量使用$emit等
+	9.1 State(this.$store.state)
+		State唯一的数据源, 我们将所有数据放在State中, 让所有组件都可以调用到它
+		单一状态树
+	
+	9.2 Getters
+		通过Getters可以派生出一些新的状态
+	
+	9.3 Mutations(提交改变状态)
+		更改Vuex的store中的状态的唯一方法是提交mutation
+	
+	9.4 Actions
+		action提交的是mutations, 而不是直接变更状态
+		action可以包含任意异步操作
+	
+	9.5 Modules
+		面对复杂的应用程序, 当管理的状态比较多时, 我们需要将Vuex的store对象分割成模块(modules)
+		const moduleA = {
+			state: {},
+			mutations: {},
+			actions: {},
+			getters: {},
+		}
+		
+		const moduleB = {
+			state: {},
+			mutations: {},
+			actions: {},
+			getters: {},
+		}
+		
+		const store = new Vuex Store({
+			modules: {
+				a: moduleA,
+				b: moduleB
+			}
+		})
+	
 			
 				
 			
