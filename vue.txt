@@ -462,7 +462,7 @@ v-on:keyup	键盘案件事件
 			getters: {},
 		}
 		
-		const store = new Vuex Store({
+		const store = new Vuex.Store({
 			modules: {
 				a: moduleA,
 				b: moduleB
