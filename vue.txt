@@ -1,3 +1,5 @@
+vue全家桶: router  axios  vuex
+
 1.模板语法
 Mustache语法：{{msg}}
 Html赋值：	v-html = ""
