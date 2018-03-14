@@ -54,7 +54,7 @@ MongoDB的windows安装配置
 1)配置文件
 	先在mongodb存储路径的 配置目录d:\MongoDB\etc 下新增配置文件mongodb.conf,添加如下内容：
 		#数据库路径
-		dbpath=d:MongoDB\data
+		dbpath=d:\MongoDB\data
 
 		#日志输出文件路径
 		logpath=d:MongoDB\log\mongo.log
@@ -90,6 +90,8 @@ MongoDB的windows安装配置
 	简化操作2)
 	将 mongod --config	d:\MongoDB\etc\mongodb.conf 命令行命名为一个命令
 		mongod --config	d:\MongoDB\etc\mongodb.conf --install --serviceName "MongoDB"
+		或
+		mongod --config d:/MongoDB/etc/mongodb.conf
 		
 3)启动mongodb客户端
 提示waiting for connections .., 表示你的mongodb已经启动了。
